@@ -1,9 +1,8 @@
 from __future__ import absolute_import, print_function, unicode_literals
-from mock import call, patch, Mock
-from nose.tools import nottest
+from mock import call, Mock
 
 from curdling.exceptions import VersionConflict, ReportableError
-from curdling.index import Index, PackageNotFound
+from curdling.index import Index
 from curdling.install import Install
 from curdling import install
 

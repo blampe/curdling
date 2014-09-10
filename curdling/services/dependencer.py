@@ -13,7 +13,16 @@ class Dependencer(Service):
 
     def handle(self, requester, data):
         requirement = data['requirement']
-        dependencies = Wheel(data['wheel']).metadata.dependencies
+
+        metadata = Wheel(data['wheel']).metadata
+
+        try:
+            dependencies = metadata.dependencies
+        except NotImplementedError:
+            # This is a legacy package without requirements. Assume no
+            # dependencies.
+            dependencies = {}
+
         extra_sections = set(util.parse_requirement(requirement).extras or ())
 
         # Honor the `extras` section of the requirement we just received
