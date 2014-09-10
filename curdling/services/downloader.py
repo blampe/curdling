@@ -265,9 +265,10 @@ class Finder(Service):
         if not distribution:
             raise RequirementNotFound(
                 'Requirement `{0}\' not found'.format(requirement))
+
         return {
             'requirement': data['requirement'],
-            'url': distribution.metadata.download_url,
+            'url': distribution.metadata.source_url,
             'locator_url': distribution.locator.base_url,
         }
 
