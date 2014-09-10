@@ -149,6 +149,7 @@ class Index(object):
             '==': lambda v: x == parse_version(v),
             '>=': lambda v: x >= parse_version(v),
             '>':  lambda v: x >  parse_version(v),
+            '~=': lambda v: x >= parse_version(v) # & x < increment(parse_version(v))
         }[op](v) for op, v in requirement.constraints or [])
 
         compat_versions = [c for c in parsed_versions.keys() if filter_cmp(c)]
